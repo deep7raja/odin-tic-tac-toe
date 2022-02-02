@@ -1,5 +1,6 @@
 let victoryDiv = document.querySelector('#victory-div');
 let currentPlayerDiv = document.querySelector('#currentPlayerDiv');
+let scoreBoardDiv = document.querySelector('#score-board');
 
 const BoardManager = ()=>{
     let boardList = ['none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none'];
@@ -88,6 +89,8 @@ const BoardManager = ()=>{
             
             victoryDiv.textContent = `The Winner is ${currentPlayer.name}`;
             currentPlayerDiv.textContent = '';
+            currentPlayer.wins += 1;
+            scoreBoardDiv.textContent = `${player1.name}: ${player1.wins} | ${player2.name}: ${player2.wins}`
             gameOver = true;
             return true;
         }
