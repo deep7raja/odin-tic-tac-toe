@@ -25,16 +25,16 @@ const boardManager = ()=>{
                 boardChildren[i].querySelector('img').style.display = 'none';
                 const divCross = boardChildren[i].querySelector('.btn-cross');
                 const divCircle = boardChildren[i].querySelector('.btn-circle');
-                divCross.addEventListener('click', ()=>{
+                divCross.onclick = ()=>{
                     boardList[i] = 'cross';
                     console.log(validate());
                     draw();
-                });
-                divCircle.addEventListener('click', ()=>{
+                };
+                divCircle.onclick = ()=>{
                     boardList[i] = 'circle';
                     console.log(validate());
                     draw();
-                }); 
+                }; 
             }
         }
     }

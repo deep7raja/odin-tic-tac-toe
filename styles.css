@@ -1,6 +1,8 @@
 :root{
     --cell-side: 50px;
+    --cell-pad: 10px;
     --cell-half: calc(var(--cell-side)/2);
+    --board-side: calc(var(--cell-side)*3 + var(--cell-pad)*6);
 }
 
 .board{
@@ -8,8 +10,13 @@
     grid-template: repeat(3, auto) / repeat(3, auto);
     align-items: center;
     justify-items: center;
+    width: var(--board-side);
+    height: var(--board-side);
 }
 
+.cell{
+    padding: var(--cell-pad);
+}
 .cell>img{
     width: var(--cell-side);
     height: var(--cell-side);
