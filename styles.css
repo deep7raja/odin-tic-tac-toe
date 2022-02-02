@@ -1,8 +1,9 @@
 :root{
-    --cell-side: 50px;
+    --img-side: 50px;
     --cell-pad: 10px;
-    --cell-half: calc(var(--cell-side)/2);
+    --cell-half: calc(var(--img-side)/2);
     --board-side: calc(var(--cell-side)*3 + var(--cell-pad)*6);
+    --cell-side: calc(var(--img-side) + 2*var(--cell-pad));
 }
 
 .board{
@@ -16,18 +17,27 @@
 
 .cell{
     padding: var(--cell-pad);
-}
-.cell>img{
     width: var(--cell-side);
     height: var(--cell-side);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cell>.img-single{
+    width: var(--img-side);
+    height: var(--img-side);
+}
+.cell>.btn-single{
+    width: var(--cell-half);
+    height: var(--cell-half);
 }
 .cell>div{
     display: flex;
 }
 .cell-btn>img{
     width: var(--cell-half);
-    height: var(--cell-side);
+    height: var(--img-side);
 }
-.cell-btn:hover{
+.cell-btn:hover, .btn-single:hover{
     background-color: rgb(204, 192, 192);
 }
