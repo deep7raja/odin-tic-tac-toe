@@ -59,9 +59,10 @@ img{
     display: flex;
     gap: 5px;
 }
-.cell-btn>img{
+.cell-btn{
     width: var(--cell-half);
     height: var(--cell-half);
+    display: flex;
 }
 .cell-btn, .btn-single{
     border-radius: var(--btn-radius);
@@ -75,6 +76,21 @@ img{
 
 #currentPlayerDiv{
     text-align: center;
+}
+#btn-restart{
+    padding: 10px 20px;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #FF8FA3;
+    border-style: none;
+    border-radius: 5px;
+    color: #590D22;
+    box-shadow: 0 3px 10px #FFB3C133;
+}
+#btn-restart:hover{
+    background-color: #FF4D6D;
+    box-shadow: 0 3px 10px #FFCCD533;
 }
 
 .board>div:nth-child(1){

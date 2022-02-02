@@ -14,6 +14,7 @@ const BoardManager = ()=>{
         victoryDiv.textContent = '';
         playedOnce = false;
         gameOver = false;
+        draw();
     }
 
     const draw = function(){
@@ -28,11 +29,13 @@ const BoardManager = ()=>{
             }
             else{
                 boardChildren[i].querySelector('.img-single').style.display = 'none';
+                boardChildren[i].querySelector('div').style.display = 'flex';
                 if(playedOnce){
                     boardChildren[i].querySelector('.btn-single').style.display = 'block';
                     if(gameOver){
                         console.log('hello');
                         boardChildren[i].querySelector('.btn-single').style.display = 'none';
+                        boardChildren[i].querySelector('div').style.display = 'none';
                         continue;
                     }
                     boardChildren[i].querySelector('div').style.display = 'none';
@@ -97,12 +100,15 @@ const BoardManager = ()=>{
 let Player = (a_name)=>{
     let name = a_name;
     let plays = 'nothing';
+    let wins = 0;
     
     let swap=()=>{
         currentPlayer = currentPlayer===player1 ? player2:player1;
     }
     let setInit=()=>{
         currentPlayer = (Math.floor(Math.random() * 11)%2 === 0)? player1:player2;
+        currentPlayer.plays = 'nothing';
+        otherPlayer().plays = 'nothing';
     }
     let otherPlayer = ()=>{
         return currentPlayer===player1? player2:player1;
@@ -111,7 +117,7 @@ let Player = (a_name)=>{
         currentPlayer.plays = a_plays;
         otherPlayer().plays = a_plays==='circle'?'cross':'circle';
     }
-    return {name, plays, swap, setInit, setPlays}
+    return {name, plays, wins, swap, setInit, setPlays}
 }
 
 let player1 = Player('Dolly');
@@ -119,7 +125,11 @@ let player2 = Player('Rudra');
 player1.setInit();
 
 let bb = BoardManager();
-
 bb.draw();
+
+document.querySelector('#btn-restart').onclick = ()=>{
+    player1.setInit();
+    bb.reset();
+}
 
 
