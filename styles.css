@@ -1,0 +1,26 @@
+:root{
+    --cell-side: 50px;
+    --cell-half: calc(var(--cell-side)/2);
+}
+
+.board{
+    display: grid;
+    grid-template: repeat(3, auto) / repeat(3, auto);
+    align-items: center;
+    justify-items: center;
+}
+
+.cell>img{
+    width: var(--cell-side);
+    height: var(--cell-side);
+}
+.cell>div{
+    display: flex;
+}
+.cell-btn>img{
+    width: var(--cell-half);
+    height: var(--cell-side);
+}
+.cell-btn:hover{
+    background-color: rgb(204, 192, 192);
+}
