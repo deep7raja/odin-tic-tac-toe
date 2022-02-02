@@ -123,8 +123,8 @@ let Player = (a_name)=>{
     return {name, plays, wins, swap, setInit, setPlays}
 }
 
-let player1 = Player('Dolly');
-let player2 = Player('Rudra');
+let player1 = Player('Steve');
+let player2 = Player('Alex');
 player1.setInit();
 
 let bb = BoardManager();
