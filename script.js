@@ -4,6 +4,7 @@ let currentPlayerDiv = document.querySelector('#currentPlayerDiv');
 const BoardManager = ()=>{
     let boardList = ['none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none'];
     let playedOnce = false;
+    let gameOver = false;
     // ['cross', 'circle', 'none',
     // 'none' , 'cross' , 'circle',
     // 'none' , 'circle', 'cross'];
@@ -12,11 +13,12 @@ const BoardManager = ()=>{
         boardList = ['none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none'];
         victoryDiv.textContent = '';
         playedOnce = false;
+        gameOver = false;
     }
 
     const draw = function(){
         const boardChildren = document.querySelector('.board').children;
-        currentPlayerDiv.textContent = `Current Player: ${currentPlayer.name}`;
+        if(!gameOver) {currentPlayerDiv.textContent = `Current Player: ${currentPlayer.name}`;}
         for(let i=0; i<boardChildren.length; ++i){
             if(boardList[i] !== 'none'){
                 boardChildren[i].querySelector('.img-single').src = `${boardList[i]}.svg`;
@@ -27,15 +29,19 @@ const BoardManager = ()=>{
             else{
                 boardChildren[i].querySelector('.img-single').style.display = 'none';
                 if(playedOnce){
-                    boardChildren[i].querySelector('div').style.display = 'none';
                     boardChildren[i].querySelector('.btn-single').style.display = 'block';
+                    if(gameOver){
+                        console.log('hello');
+                        boardChildren[i].querySelector('.btn-single').style.display = 'none';
+                        continue;
+                    }
+                    boardChildren[i].querySelector('div').style.display = 'none';
                     boardChildren[i].querySelector('.btn-single').src = `${currentPlayer.plays}.svg`
                     boardChildren[i].querySelector('.btn-single').onclick =  ()=>{
                         boardList[i] = currentPlayer.plays;
-                        if(!validate()){
-                            currentPlayer.swap();
-                            draw();
-                        }
+                        validate();
+                        currentPlayer.swap();
+                        draw();
                     };
                 }
                 else{
@@ -46,19 +52,17 @@ const BoardManager = ()=>{
                         playedOnce = true;
                         currentPlayer.setPlays('cross');
                         boardList[i] = 'cross';
-                        if(!validate()){
-                            currentPlayer.swap();
-                            draw();
-                        }
+                        validate();
+                        currentPlayer.swap();
+                        draw();
                     };
                     divCircle.onclick = ()=>{
                         playedOnce = true;
                         currentPlayer.setPlays('circle');
                         boardList[i] = 'circle';
-                        if(!validate()){
-                            currentPlayer.swap();
-                            draw();
-                        }
+                        validate();
+                        currentPlayer.swap();
+                        draw();
                     }; 
                 }
             }
@@ -81,6 +85,7 @@ const BoardManager = ()=>{
             
             victoryDiv.textContent = `The Winner is ${currentPlayer.name}`;
             currentPlayerDiv.textContent = '';
+            gameOver = true;
             return true;
         }
         return false;
