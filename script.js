@@ -36,7 +36,7 @@ const BoardManager = ()=>{
                         continue;
                     }
                     boardChildren[i].querySelector('div').style.display = 'none';
-                    boardChildren[i].querySelector('.btn-single').src = `${currentPlayer.plays}.svg`
+                    boardChildren[i].querySelector('.btn-single').src = `${currentPlayer.plays}1.svg`
                     boardChildren[i].querySelector('.btn-single').onclick =  ()=>{
                         boardList[i] = currentPlayer.plays;
                         validate();
@@ -114,7 +114,7 @@ let Player = (a_name)=>{
     return {name, plays, swap, setInit, setPlays}
 }
 
-let player1 = Player('Deepak');
+let player1 = Player('Dolly');
 let player2 = Player('Rudra');
 player1.setInit();
 
